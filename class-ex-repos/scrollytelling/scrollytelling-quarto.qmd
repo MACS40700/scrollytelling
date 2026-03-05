@@ -1,0 +1,150 @@
+---
+title: "Interactive Plotly Charts"
+format:
+  closeread-html:
+    cr-style:
+      section-background-color: "#f8f9fa"
+      narrative-background-color: "#ffffff"
+      narrative-font-size: 1.1em
+      sticky-col-width: 60%
+---
+
+```{r setup, include=FALSE}
+library(plotly)
+library(ggplot2)
+library(dplyr)
+library(readr)
+```
+
+# Getting Started with Plotly {.unnumbered}
+
+Plotly makes it easy to create beautiful interactive visualizations in R.
+As you scroll, each chart will appear in sequence alongside explanations.
+
+---
+
+:::{.cr-section}
+
+## Box Plots {.unnumbered}
+
+:::{#cr-boxplot}
+```{r}
+fig <- plot_ly(midwest, x = ~percollege, color = ~state, type = "box", height = 400)
+fig
+```
+:::
+
+Box plots are great for comparing distributions across groups.
+Here we're looking at the **percentage of college-educated residents**
+across Midwestern states. Notice how Illinois and Michigan have wider
+spreads compared to Indiana.
+
+[@cr-boxplot]{scale-by="0.9"}
+
+---
+
+## Bar Charts {.unnumbered}
+
+:::{#cr-bar}
+```{r}
+fig <- plot_ly(
+  x = c("giraffes", "orangutans", "monkeys"),
+  y = c(20, 14, 23),
+  name = "SF Zoo",
+  type = "bar",
+  height = 350,
+  marker = list(color = c("#2196F3", "#4CAF50", "#FF9800"))
+)
+fig
+```
+:::
+
+Bar charts are ideal for **categorical comparisons**. 
+The `type = "bar"` argument is the key — plotly supports many chart types 
+(scatter, box, histogram, heatmap) using the same syntax.
+
+[@cr-bar]
+
+---
+
+## Scatter Plots {.unnumbered}
+
+:::{#cr-scatter}
+```{r}
+plot_ly(data = iris,
+        x = ~Sepal.Length,
+        y = ~Petal.Length,
+        color = ~Species,
+        height = 400,
+        type = "scatter",
+        mode = "markers",
+        marker = list(size = 8, opacity = 0.7))
+```
+:::
+
+Scatter plots reveal **relationships between two continuous variables**.
+The iris dataset shows a clear positive correlation between sepal length
+and petal length — and the species separate naturally in space.
+
+[@cr-scatter]{scale-by="1.1"}
+
+---
+
+## Converting ggplot2 → Plotly {.unnumbered}
+
+:::{#cr-ggplotly}
+```{r message=FALSE, warning=FALSE}
+p <- ggplot(mtcars, aes(x = mpg, fill = factor(cyl))) +
+  geom_dotplot(stackgroups = TRUE, binwidth = 1, binpositions = "all") +
+  scale_fill_brewer(palette = "Set2", name = "Cylinders") +
+  labs(title = "MPG Distribution by Cylinder Count", x = "Miles per Gallon") +
+  theme_minimal()
+
+ggplotly(p, height = 350)
+```
+:::
+
+The `ggplotly()` function wraps any ggplot2 object into an interactive plot.
+This is the fastest route to interactivity — build your chart in ggplot2,
+then simply pass it to `ggplotly()`. Hover over the dots to see exact values!
+
+[@cr-ggplotly]
+
+---
+
+## Dumbbell Plots {.unnumbered}
+
+:::{#cr-dumbbell}
+```{r message=FALSE, warning=FALSE}
+gapminder <- read_csv(
+  "https://raw.githubusercontent.com/datavizpyr/data/master/gapminder-FiveYearData.csv",
+  show_col_types = FALSE
+)
+
+df <- gapminder |>
+  filter(year %in% c(1952, 2007), continent == "Asia") |>
+  mutate(paired = rep(1:(n() / 2), each = 2),
+         year = factor(year))
+
+p <- df |>
+  group_by(paired) |>
+  ggplot(aes(x = lifeExp, y = reorder(country, lifeExp))) +
+  geom_line(aes(group = paired), color = "grey70") +
+  geom_point(aes(color = year), size = 2.5) +
+  scale_color_viridis_d(name = "Year", option = "turbo") +
+  labs(y = NULL, x = "Life Expectancy",
+       title = "Life Expectancy in Asia: 1952 vs 2007") +
+  theme_minimal(base_size = 10)
+
+ggplotly(p, height = 500)
+```
+:::
+
+Dumbbell plots excel at showing **change between two time points**.
+Each line connects 1952 (purple) to 2007 (yellow) for each Asian country.
+The dramatic rightward shift represents one of the greatest improvements
+in human longevity in recorded history.
+
+[@cr-dumbbell]{scale-by="0.95"}
+
+:::

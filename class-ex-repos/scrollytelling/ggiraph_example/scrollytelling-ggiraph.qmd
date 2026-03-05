@@ -1,0 +1,191 @@
+---
+title: "Interactive Charts with ggiraph"
+format:
+  closeread-html:
+    cr-style:
+      section-background-color: "#f8f9fa"
+      narrative-background-color: "#ffffff"
+      narrative-font-size: 1.1em
+      sticky-col-width: 60%
+---
+
+```{r setup, include=FALSE}
+library(ggiraph)
+library(ggplot2)
+library(dplyr)
+library(readr)
+```
+
+# Getting Started with ggiraph {.unnumbered}
+
+ggiraph extends ggplot2 with interactivity — hover tooltips, highlights, and click actions —
+using the same grammar you already know. As you scroll, each chart will appear alongside explanations.
+
+---
+
+:::{.cr-section}
+
+## Box Plots {.unnumbered}
+
+:::{#cr-boxplot}
+```{r}
+p <- ggplot(midwest, aes(x = state, y = percollege, fill = state)) +
+  geom_boxplot(alpha = 0.7) +
+  geom_point_interactive(
+    aes(tooltip = paste0(state, "\nCounty % college: ", round(percollege, 1), "%"),
+        data_id = state),
+    position = position_jitter(width = 0.2, seed = 42),
+    size = 1.5, alpha = 0.5) +
+  scale_fill_brewer(palette = "Set2", guide = "none") +
+  labs(x = NULL, y = "% College Educated",
+       title = "College Education by Midwest State") +
+  theme_minimal(base_size = 13)
+
+girafe(ggobj = p, width_svg = 6, height_svg = 4,
+       options = list(opts_hover(css = "opacity:1;stroke:black;stroke-width:2px;"),
+                      opts_tooltip(css = "background:white;padding:6px;border-radius:4px;
+                                          border:1px solid #ccc;font-size:13px;")))
+```
+:::
+
+Box plots are great for comparing distributions across groups.
+Here we're looking at the **percentage of college-educated residents**
+across Midwestern states. **Hover over each box** to see the state name and value.
+Notice how Illinois has a wider spread compared to Indiana.
+
+[@cr-boxplot]{scale-by="0.9"}
+
+---
+
+## Bar Charts {.unnumbered}
+
+:::{#cr-bar}
+```{r}
+zoo_df <- data.frame(
+  animal = c("giraffes", "orangutans", "monkeys"),
+  count  = c(20, 14, 23)
+)
+
+p <- ggplot(zoo_df, aes(x = animal, y = count, fill = animal,
+            tooltip = paste0(animal, ": ", count),
+            data_id = animal)) +
+  geom_col(alpha = 0.85) +
+  scale_fill_manual(values = c("#2196F3", "#4CAF50", "#FF9800"), guide = "none") +
+  labs(title = "SF Zoo Animal Count", x = NULL, y = "Count") +
+  theme_minimal(base_size = 13)
+
+p
+# girafe(ggobj = p, width_svg = 6, height_svg = 3.5,
+#        options = list(opts_hover(css = "opacity:1;filter:brightness(1.15);"),
+#                       opts_tooltip(css = "background:white;padding:6px;border-radius:4px;
+#                                           border:1px solid #ccc;font-size:13px;")))
+```
+:::
+
+Bar charts are ideal for **categorical comparisons**.
+With ggiraph, swap `geom_col()` for `geom_col_interactive()` and add a
+`tooltip` aesthetic — that's all it takes. **Hover over each bar** to see the value.
+
+[@cr-bar]
+
+---
+
+## Scatter Plots {.unnumbered}
+
+:::{#cr-scatter}
+```{r}
+p <- ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, color = Species,
+            tooltip = paste0("Species: ", Species,
+                             "\nSepal: ", Sepal.Length,
+                             "\nPetal: ", Petal.Length),
+            data_id = paste0(Species, Sepal.Length, Petal.Length))) +
+  geom_point_interactive(size = 2.5, alpha = 0.75) +
+  scale_color_brewer(palette = "Dark2") +
+  labs(title = "Iris: Sepal vs Petal Length",
+       x = "Sepal Length", y = "Petal Length") +
+  theme_minimal(base_size = 13)
+
+girafe(ggobj = p, width_svg = 6, height_svg = 4,
+       options = list(opts_hover(css = "r:5px;opacity:1;stroke:black;stroke-width:1px;"),
+                      opts_tooltip(css = "background:white;padding:6px;border-radius:4px;
+                                          border:1px solid #ccc;font-size:13px;")))
+```
+:::
+
+Scatter plots reveal **relationships between two continuous variables**.
+The iris dataset shows a clear positive correlation between sepal length
+and petal length. **Hover over any point** to see the exact measurements.
+The three species separate naturally in space.
+
+[@cr-scatter]{scale-by="1.1"}
+
+---
+
+## Dot Plots {.unnumbered}
+
+:::{#cr-dotplot}
+```{r}
+p <- ggplot(mtcars, aes(x = mpg, fill = factor(cyl),
+            tooltip = paste0("MPG: ", mpg, "\nCylinders: ", cyl),
+            data_id = row.names(mtcars))) +
+  geom_dotplot_interactive(stackgroups = TRUE, binwidth = 1,
+                           binpositions = "all", alpha = 0.85) +
+  scale_fill_brewer(palette = "Set2", name = "Cylinders") +
+  labs(title = "MPG Distribution by Cylinder Count", x = "Miles per Gallon") +
+  theme_minimal(base_size = 13)
+
+girafe(ggobj = p, width_svg = 6, height_svg = 3.5,
+       options = list(opts_hover(css = "opacity:1;stroke:black;stroke-width:1.5px;"),
+                      opts_tooltip(css = "background:white;padding:6px;border-radius:4px;
+                                          border:1px solid #ccc;font-size:13px;")))
+```
+:::
+
+With ggiraph, the pattern is always the same: take any `geom_*()` from ggplot2,
+add `_interactive`, and pass `tooltip` and `data_id` aesthetics.
+**Hover over the dots** to see each car's MPG and cylinder count.
+
+[@cr-dotplot]
+
+---
+
+## Dumbbell Plots {.unnumbered}
+
+:::{#cr-dumbbell}
+```{r message=FALSE, warning=FALSE}
+gapminder <- read_csv("gapminder.csv", show_col_types = FALSE)
+
+df <- gapminder |>
+  filter(year %in% c(1952, 2007), continent == "Asia") |>
+  mutate(year = factor(year))
+
+p <- ggplot(df, aes(x = lifeExp, y = reorder(country, lifeExp))) +
+  geom_line(aes(group = country), color = "grey70", linewidth = 0.8) +
+  geom_point_interactive(
+    aes(color = year,
+        tooltip = paste0(country, " (", year, ")\nLife Exp: ", round(lifeExp, 1)),
+        data_id = paste0(country, year)),
+    size = 3) +
+  scale_color_viridis_d(name = "Year", option = "turbo") +
+  labs(y = NULL, x = "Life Expectancy",
+       title = "Life Expectancy in Asia: 1952 vs 2007") +
+  theme_minimal(base_size = 10)
+
+p
+# 
+# girafe(ggobj = p, width_svg = 6, height_svg = 7,
+#        options = list(opts_hover(css = "r:6px;opacity:1;stroke:black;stroke-width:1px;"),
+#                       opts_tooltip(css = "background:white;padding:6px;border-radius:4px;
+#                                           border:1px solid #ccc;font-size:13px;")))
+```
+:::
+
+Dumbbell plots excel at showing **change between two time points**.
+Each line connects 1952 (purple) to 2007 (yellow) for each Asian country.
+**Hover over any point** to see the exact life expectancy.
+The dramatic rightward shift represents one of the greatest improvements
+in human longevity in recorded history.
+
+[@cr-dumbbell]{scale-by="0.95"}
+
+:::

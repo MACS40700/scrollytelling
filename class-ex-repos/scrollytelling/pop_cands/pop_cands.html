@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>It’s a new soundtrack: Candidates, Campaigns, and Rally playlists</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="pop_cands_files/libs/clipboard/clipboard.min.js"></script>
+<script src="pop_cands_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="pop_cands_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="pop_cands_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="pop_cands_files/libs/quarto-html/popper.min.js"></script>
+<script src="pop_cands_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="pop_cands_files/libs/quarto-html/anchor.min.js"></script>
+<link href="pop_cands_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="pop_cands_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="pop_cands_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="pop_cands_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="pop_cands_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="pop_cands_files/libs/quarto-contrib/intersection-observer-polyfill-1.0.0/intersection-observer.js"></script>
+<script src="pop_cands_files/libs/quarto-contrib/scrollama-3.2.0/scrollama.min.js"></script>
+<script src="pop_cands_files/libs/quarto-contrib/closeread-0.1.0/closeread.js"></script>
+<meta cr-debug-mode="false">
+<meta cr-remove-header-space="false">
+
+
+<link rel="stylesheet" href="_extensions/qmd-lab/closeread/closeread.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
+
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">It’s a new soundtrack: Candidates, Campaigns, and Rally playlists</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<section id="background" class="level1 narrative trigger">
+<h1 class="narrative">Background</h1>
+</section>
+<div class="trigger">
+<div class="narrative">
+<p>Music has been constant feature of political life, from social movements to candidate events [7], [1]. Social media brought more ways for candidates to connect, including sharing their playlists with constituents: these songs can provide information about candidates and who they are [3]. As political candidates are increasingly using music at rallies and releasing or revealing playlists, placing their selected songs into this framework can provide clear and concise opportunities to study how they construct their public image, build political brands, and signal values to voters. Elected representatives can fulfill their duties using different schema: they may see themselves a a dutiful agent, responsible to voters’ needs and demands, as someone who is entrusted with acting according to their understanding of what is best or ‘right’, or something in between. How elected candidates ultimately see their roles can cover this gamut. Jane Mansbridge, puts forward [4] and later refines [5] a model of representation in which we can think of candidates as fulfilling a ‘gyroscope’-type approach. As gyroscopes, candidates are entities in themselves, rotating about their ideals an morals, akin to a brand or a trustee being selected. The role of the campaign is then to help candidates put forward information about themselves in a value- and information-driven manner. Building on Mansbridge’s framework, I anticipate that candidates will use music not only to entertain, but to provide signals about themselves and the current era: political candidates will want to evoke personal traits relative to their candidacy or party.</p>
+</div>
+</div>
+<section id="data-and-methods" class="level2 narrative trigger">
+<h2 class="narrative anchored" data-anchor-id="data-and-methods">Data and Methods</h2>
+</section>
+<div class="trigger">
+<div class="narrative">
+<p>My dataset, from [2], contains 5,930 songs with lyrics gathered from Lyricsmania.com and Genius.com. The original dataset contained 7388 songs (what it termed ‘preexisting songs’), of which 2209 were unique songs. Of these, I focused on relevant events from the dataset: “campaign launch”, “campaign rally”, “campaign stop”, “playlist”, “speech”, and “town hall meeting”. This further narrowed to approximately 2400 songs total, of which 924 were unique. The goal was to focus on where candidates were likely to have chosen their playlists/music for an in-person event. Table 1 shows the number of candidates and songs in each election year covered in the dataset. For the majority of the analyses, I include one song per campaign to avoid overly skewing the results. This means that while Trump has played ‘God Bless the USA’ by Lee Greenwood approximately 280 times, it only appears once per each of his three campaigns in the analysis. The exception is Figure 1, which does incorporate all plays of songs. In my analysis, I employ three methods: topic models, natural language processing, and principal component analysis. I aim to provide a clear and replicable framework for studying lyrical music that can be applied beyond the realm of political campaigns. Together, these three methods provide different perspectives on the song lyrics, covering the broad themes within playlists, particular vocabulary and word use, and then a larger picture of the landscape of relative campaigns. I incorporate Llexicon-based measures, following approaches from [redacted] and [redacted], using Principal Component Analysis to reduce the dimensionality of the corpus. My goals are twofold: provide an interpretable perspective on the candidate music landscape and understand the extent to which candidate playlists are distinct from one another (both generally and relative to the principal components).</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>To reduce the dimensionality of the data, I employ an iterated approach following Nelson’s computational grounded theory [6]. In this approach, I first consider high loading variables, those which have a strong association with the relevant dimensions. In a second stage, I then use theory to guide selection from these variables, focusing upon expectations about playlists and musics’ roles in candidate campaigns (specifically, linguistic construction (‘you’ vs ‘I’ and social references) and about how songs can be organized, per research from [redacted] (specifically, around emotional and linguistic content, such as sadness, joy, anticipation, explicit language, and cognitive processes).</p>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>Preliminary Findings Across the different campaigns, Trust and Joy are key emotions present. While there is not large-scale research on emotions present in pop songs, [redacted] finds that trust occurs at about 14% of the work in [redacted]. Across all the front runners in the last three US presidential elections, trust comprises about 18% of the emotions present within songs. Additionally, Democratic candidates have more negative emotions than Trump – getting more negative each year, as Figure 2 shows. I find both cross-party and within-candidate patterns: all candidates increased the use of pro-social language in their playlists, while Democratic candidates increasingly had more negative emotions and more moral language in their songs. Additionally, trust was the most common emotion present in all front-runner candidate playlists. Playlists can send signals about the candidates and how they view their responsibility: as a delegate acting on behalf of the people or as a brand in which voters invest. In the data, Trump, in each of his three campaigns, evidenced more ‘brandidate’-type language in his playlists, with ‘I’ pronounced being used very heavily. In contrast, Democratic candidates tended toward delegate-type language and more inclusive ‘we’ language. Finally, building upon the themes and emotions present within candidate playlists, I conducted Principal Component Analysis to explore a two-dimensional representation of candidates and playlists. Figure 3 displays the loadings for the variables. Naming the dimensions from left-to-right, the dimension moves from a more linguistic one (pronouns, functions) to a more emotional one (all of the emotion variables). Moving from bottom-to-top, the dimension moves from LIWC’s ‘Analytic’ variable (a more logic-driven framework) to a more socially oriented one (social behavior). Figure 4 shows that most Republican candidates land on the more logical side while Democratic candidates land on the more social side. The range into more emotion-driven songs is also broader on the Democratic side. These trends are also present in song-specific analyses, as shown in Figure 5. As a candidate’s music choices are now more public and more widely shared, in addition to frequently used at events, understanding the role it play can deepen our understanding of how political candidates see themselves and the roles they hope to ultimately fulfill as elected representatives. This work contributes to our understanding of political communication and speaks to broader cultural themes around music as a tool for connection and communication.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+
+</div>
+</div>
+</div>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<section id="references" class="level2 narrative trigger">
+<h2 class="narrative anchored" data-anchor-id="references">References</h2>
+</section>
+<div class="trigger">
+<div class="narrative">
+<p>[1] R. Costa. Songs for Campaign Seasons Past and Present - WSJ. Wall Street Journal, Oct.&nbsp;2008. ISSN 0099-9660. URL https://www.wsj.com/articles/ SB122290103509796055. [2] D. Gorzelany-Mostak, N. Graber, and J. Deavill. Trail Trax, 2024. URL https: //db.traxonthetrail.com/. [3] W. D. Harpine. “We want yer, McKinley”: Epbdeictic rhetoric in songs from the 1896 presidential campaign. Rhetoric Society Quarterly:, 34(1), 2004. doi: https: //doi.org/10.1080/02773940409391274. URL https://www.tandfonline.com/doi/ abs/10.1080/02773940409391274. [4] J. Mansbridge. Rethinking Representation. American Political Science Review, 97(4):515–528, Nov.&nbsp;2003. ISSN 1537-5943, 0003-0554. doi: 10.1017/ S0003055403000856. URL https://www.cambridge.org/core/journals/ american-political-science-review/article/rethinking-representation/ 608152BA9E3A0D9B0EC01CE4063B9FB3. [5] J. Mansbridge. Clarifying the Concept of Representation. American Political Science Review, 105(3):621–630, Aug.&nbsp;2011. ISSN 1537-5943, 0003-0554. doi: 10.1017/S0003055411000189. URL https://www.cambridge.org/core/journals/ american-political-science-review/article/clarifying-the-concept-ofrepresentation/8FCAB056D1AA61DAE84D64D409755C12. [6] L. K. Nelson. Computational Grounded Theory: A Methodological Framework. Sociological Methods &amp; Research, 49(1):3–42, Feb.&nbsp;2020. ISSN 0049-1241. doi: 10.1177/0049124117729703. URL https://doi.org/10.1177/0049124117729703. [7] B. S. Schoening and E. T. Kasper. Don’t Stop Thinking About the Music: The Politics of Songs and Musicians in Presidential Campaigns. Bloomsbury Publishing PLC, Dec.&nbsp;2011. ISBN 978-0-7391-7299-5. Google-Books-ID: OUBPAQAAQBAJ.</p>
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+
+</div>
+</div>
+</div>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

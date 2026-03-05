@@ -1,0 +1,15 @@
+# This example repo gives several examples of `closeread' documents
+
+
+## Getting started:
+
+* Visit [the closeread dev guide](https://closeread.dev/guide/)
+* In your TERMINAL of the HOME FOLDER, `run quarto add qmd-lab/closeread`
+
+
+## Guide to these files: 
+
+Each **folder** hosts a separate example. Within each folder, you will need to go into the terminal to enable closeread. This home folder features [scrollytelling-quarto](scrollytelling-quartro.qmd) as a basic example. 
+
+
+Once you feel more comfortable, move on to the [minard example](minard/index.qmd). Finally, you can explore the [political candidates example](pop_cands/pop_cands.qmd)

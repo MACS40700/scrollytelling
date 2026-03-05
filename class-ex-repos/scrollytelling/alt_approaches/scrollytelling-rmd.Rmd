@@ -1,0 +1,250 @@
+---
+title: "Interactive Plotly Charts"
+output:
+  html_document:
+    theme: flatly
+    self_contained: true
+    css: !expr NULL   # placeholder — inline CSS below handles styling
+---
+
+```{=html}
+<style>
+/* ── Layout ── */
+body { font-family: 'Georgia', serif; margin: 0; background: #f8f9fa; }
+h1 { text-align: center; padding: 3rem 1rem 1rem; font-size: 2.2rem; color: #222; }
+.intro { max-width: 680px; margin: 0 auto 3rem; font-size: 1.15rem;
+         line-height: 1.7; color: #444; text-align: center; padding: 0 1rem; }
+
+/* ── Scrollytelling layout ── */
+.scroll-section {
+  display: flex;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto 4rem;
+  padding: 0 1.5rem;
+  align-items: flex-start;
+  min-height: 80vh;
+}
+.scroll-narrative {
+  flex: 0 0 340px;
+  position: sticky;
+  top: 80px;
+  align-self: flex-start;
+}
+.scroll-steps { flex: 1; }
+.step {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.step h2 { font-size: 1.3rem; color: #1a1a2e; margin-top: 0; }
+.step p  { color: #555; line-height: 1.65; font-size: 0.97rem; }
+
+/* ── Sticky narrative card ── */
+.narrative-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  border-left: 4px solid #6c63ff;
+  transition: border-color 0.3s;
+  min-height: 180px;
+}
+.narrative-card h3 { margin-top: 0; color: #6c63ff; font-size: 1rem;
+                     text-transform: uppercase; letter-spacing: 0.05em; }
+.narrative-card p  { font-size: 0.95rem; color: #444; line-height: 1.65; }
+
+/* ── Progress indicator ── */
+.progress-bar {
+  position: fixed; top: 0; left: 0; height: 4px;
+  background: linear-gradient(90deg, #6c63ff, #ff6584);
+  width: 0%; z-index: 1000; transition: width 0.1s;
+}
+
+/* ── Single-column fallback for mobile ── */
+@media (max-width: 768px) {
+  .scroll-section { flex-direction: column; }
+  .scroll-narrative { position: static; flex: unset; }
+}
+</style>
+
+<div class="progress-bar" id="progress"></div>
+```
+
+```{r setup, include=FALSE}
+library(plotly)
+library(ggplot2)
+library(dplyr)
+library(readr)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+# Getting Started with Plotly
+
+::: {.intro}
+Plotly makes interactive charts easy in R. Scroll through the sections below —
+each chart appears alongside its explanation. Hover over any chart to explore the data.
+:::
+
+---
+
+```{=html}
+<div class="scroll-section">
+  <!-- Sticky narrative (left) -->
+  <div class="scroll-narrative">
+    <div class="narrative-card" id="narrative-card">
+      <h3 id="nav-label">📊 Chart Guide</h3>
+      <p id="nav-text">Scroll down to explore different plotly chart types,
+         from box plots to dumbbell charts.</p>
+    </div>
+  </div>
+
+  <!-- Scrolling steps (right) -->
+  <div class="scroll-steps">
+```
+
+### Box Plots {#box}
+
+```{r}
+plot_ly(midwest, x = ~percollege, color = ~state, type = "box", height = 300)
+```
+
+**Distribution of college education across Midwest states.** Illinois and Michigan
+show the widest spread — some counties are highly educated, others much less so.
+
+---
+
+### Bar Charts {#bar}
+
+```{r}
+plot_ly(
+  x = c("giraffes", "orangutans", "monkeys"),
+  y = c(20, 14, 23),
+  name = "SF Zoo",
+  type = "bar",
+  height = 250,
+  marker = list(color = c("#6c63ff", "#ff6584", "#43aa8b"))
+)
+```
+
+**Categorical comparisons with `type = "bar"`.** The `type` argument controls
+chart style — try `"scatter"`, `"histogram"`, or `"heatmap"` for different looks.
+
+---
+
+### Scatter Plots {#scatter}
+
+```{r}
+plot_ly(data = iris, x = ~Sepal.Length, y = ~Petal.Length,
+        color = ~Species, height = 350,
+        type = "scatter", mode = "markers",
+        marker = list(size = 8, opacity = 0.75))
+```
+
+**Relationships between continuous variables.** Petal length and sepal length
+are strongly correlated, and the three *Iris* species naturally separate in space.
+
+---
+
+### ggplot2 → Plotly {#ggplotly}
+
+```{r}
+p <- ggplot(mtcars, aes(x = mpg, fill = factor(cyl))) +
+  geom_dotplot(stackgroups = TRUE, binwidth = 1, binpositions = "all") +
+  scale_fill_brewer(palette = "Set2", name = "Cylinders") +
+  labs(x = "Miles per Gallon") +
+  theme_minimal()
+ggplotly(p, height = 300)
+```
+
+**`ggplotly()` wraps any ggplot2 chart instantly.** Build in ggplot2 for
+fine-grained control, then hand off to `ggplotly()` for hover interactivity.
+
+---
+
+### Dumbbell Plots {#dumbbell}
+
+```{r}
+gapminder <- read_csv(
+  "https://raw.githubusercontent.com/datavizpyr/data/master/gapminder-FiveYearData.csv",
+  show_col_types = FALSE
+)
+df <- gapminder |>
+  filter(year %in% c(1952, 2007), continent == "Asia") |>
+  mutate(paired = rep(1:(n() / 2), each = 2), year = factor(year))
+
+p <- df |> group_by(paired) |>
+  ggplot(aes(x = lifeExp, y = reorder(country, lifeExp))) +
+  geom_line(aes(group = paired), color = "grey70") +
+  geom_point(aes(color = year), size = 2.5) +
+  scale_color_viridis_d(name = "Year", option = "turbo") +
+  labs(y = NULL, x = "Life Expectancy") +
+  theme_minimal(base_size = 10)
+ggplotly(p, height = 480)
+```
+
+**Change between two time points.** Each line connects 1952 to 2007 for an
+Asian country. The dramatic rightward shift reflects one of humanity's greatest
+public health achievements.
+
+---
+
+```{=html}
+  </div><!-- scroll-steps -->
+</div><!-- scroll-section -->
+```
+
+```{=html}
+<script>
+// Update sticky narrative card as user scrolls
+const steps = [
+  { id: "box",       label: "📦 Box Plots",
+    text: "Box plots show the spread and skew of a distribution. The IQR (box) contains the middle 50% of data." },
+  { id: "bar",       label: "📊 Bar Charts",
+    text: "Use type = 'bar' for categorical comparisons. Plotly supports bar, scatter, box, heatmap, and more." },
+  { id: "scatter",   label: "🔵 Scatter Plots",
+    text: "type = 'scatter' with mode = 'markers' gives you a classic scatter. Add color to encode a third variable." },
+  { id: "ggplotly",  label: "🔄 ggplot2 → Plotly",
+    text: "ggplotly() converts any ggplot2 object. Great for reusing your existing ggplot2 code with hover." },
+  { id: "dumbbell",  label: "🏋️ Dumbbell Plots",
+    text: "Dumbbells highlight change between two states. Connect two points per item to show before/after." },
+];
+
+const navLabel = document.getElementById("nav-label");
+const navText  = document.getElementById("nav-text");
+const progress = document.getElementById("progress");
+const card     = document.getElementById("narrative-card");
+
+const colors   = ["#6c63ff","#ff6584","#43aa8b","#f7a325","#e63946"];
+
+function updateNarrative(idx) {
+  const s = steps[idx];
+  navLabel.textContent = s.label;
+  navText.textContent  = s.text;
+  card.style.borderLeftColor = colors[idx];
+  navLabel.style.color = colors[idx];
+}
+
+function onScroll() {
+  // Progress bar
+  const scrolled = window.scrollY;
+  const total    = document.body.scrollHeight - window.innerHeight;
+  progress.style.width = (scrolled / total * 100) + "%";
+
+  // Active step
+  let active = 0;
+  steps.forEach((s, i) => {
+    const el = document.getElementById(s.id);
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.55) active = i;
+  });
+  updateNarrative(active);
+}
+
+window.addEventListener("scroll", onScroll, { passive: true });
+onScroll();
+</script>
+```

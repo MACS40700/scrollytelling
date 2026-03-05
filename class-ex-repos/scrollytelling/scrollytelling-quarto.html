@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Interactive Plotly Charts</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="scrollytelling-quarto_files/libs/clipboard/clipboard.min.js"></script>
+<script src="scrollytelling-quarto_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="scrollytelling-quarto_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="scrollytelling-quarto_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="scrollytelling-quarto_files/libs/quarto-html/popper.min.js"></script>
+<script src="scrollytelling-quarto_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="scrollytelling-quarto_files/libs/quarto-html/anchor.min.js"></script>
+<link href="scrollytelling-quarto_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="scrollytelling-quarto_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="scrollytelling-quarto_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="scrollytelling-quarto_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="scrollytelling-quarto_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="scrollytelling-quarto_files/libs/quarto-contrib/intersection-observer-polyfill-1.0.0/intersection-observer.js"></script>
+<script src="scrollytelling-quarto_files/libs/quarto-contrib/scrollama-3.2.0/scrollama.min.js"></script>
+<script src="scrollytelling-quarto_files/libs/quarto-contrib/closeread-0.1.0/closeread.js"></script>
+<script src="scrollytelling-quarto_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="scrollytelling-quarto_files/libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="scrollytelling-quarto_files/libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="scrollytelling-quarto_files/libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="scrollytelling-quarto_files/libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="scrollytelling-quarto_files/libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="scrollytelling-quarto_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="scrollytelling-quarto_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<meta cr-debug-mode="false">
+<meta cr-remove-header-space="false">
+
+
+<link rel="stylesheet" href="_extensions/qmd-lab/closeread/closeread.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
+
+<main class="content column-page" id="quarto-document-content">
+      <!-- user-provided yaml closeread style options -->
+      <style>
+        :root {
+          --cr-narrative-font-size: 1.1em;
+--cr-section-background-color: #f8f9fa;
+        }
+      </style>
+    
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Interactive Plotly Charts</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="getting-started-with-plotly" class="level1 unnumbered">
+<h1 class="unnumbered">Getting Started with Plotly</h1>
+<p>Plotly makes it easy to create beautiful interactive visualizations in R. As you scroll, each chart will appear in sequence alongside explanations.</p>
+<hr>
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<section id="box-plots" class="level2 unnumbered narrative trigger">
+<h2 class="unnumbered narrative anchored" data-anchor-id="box-plots">Box Plots</h2>
+</section>
+<div class="trigger">
+<div class="narrative">
+<p>Box plots are great for comparing distributions across groups. Here we’re looking at the <strong>percentage of college-educated residents</strong> across Midwestern states. Notice how Illinois and Michigan have wider spreads compared to Indiana.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-scale-by="0.9" data-focus-on="cr-boxplot">
+<div class="narrative">
+
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<hr>
+</div>
+</div>
+<section id="bar-charts" class="level2 unnumbered narrative trigger">
+<h2 class="unnumbered narrative anchored" data-anchor-id="bar-charts">Bar Charts</h2>
+</section>
+<div class="trigger">
+<div class="narrative">
+<p>Bar charts are ideal for <strong>categorical comparisons</strong>. The <code>type = "bar"</code> argument is the key — plotly supports many chart types (scatter, box, histogram, heatmap) using the same syntax.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-bar">
+<div class="narrative">
+
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<hr>
+</div>
+</div>
+<section id="scatter-plots" class="level2 unnumbered narrative trigger">
+<h2 class="unnumbered narrative anchored" data-anchor-id="scatter-plots">Scatter Plots</h2>
+</section>
+<div class="trigger">
+<div class="narrative">
+<p>Scatter plots reveal <strong>relationships between two continuous variables</strong>. The iris dataset shows a clear positive correlation between sepal length and petal length — and the species separate naturally in space.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-scale-by="1.1" data-focus-on="cr-scatter">
+<div class="narrative">
+
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<hr>
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<p>The <code>ggplotly()</code> function wraps any ggplot2 object into an interactive plot. This is the fastest route to interactivity — build your chart in ggplot2, then simply pass it to <code>ggplotly()</code>. Hover over the dots to see exact values!</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-ggplotly">
+<div class="narrative">
+
+</div>
+</div>
+<div class="trigger">
+<div class="narrative">
+<hr>
+</div>
+</div>
+<section id="dumbbell-plots" class="level2 unnumbered narrative trigger">
+<h2 class="unnumbered narrative anchored" data-anchor-id="dumbbell-plots">Dumbbell Plots</h2>
+</section>
+<div class="trigger">
+<div class="narrative">
+<p>Dumbbell plots excel at showing <strong>change between two time points</strong>. Each line connects 1952 (purple) to 2007 (yellow) for each Asian country. The dramatic rightward shift represents one of the greatest improvements in human longevity in recorded history.</p>
+</div>
+</div>
+<div class="trigger new-trigger" data-scale-by="0.95" data-focus-on="cr-dumbbell">
+<div class="narrative">
+
+</div>
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-boxplot" class="sticky">
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-b8633c3d1949a7fc9a27" style="width:100%;height:386px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b8633c3d1949a7fc9a27">{"x":{"visdat":{"581d444acbfb":["function () ","plotlyVisDat"]},"cur_data":"581d444acbfb","attrs":{"581d444acbfb":{"x":{},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"height":400,"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"percollege"},"yaxis":{"domain":[0,1],"automargin":true},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(102,194,165,0.5)","x":[19.631391799999999,11.2433076,17.033819399999999,17.278953900000001,14.475999,18.9046238,11.917387700000001,16.197120900000002,14.1076487,41.295808100000002,13.567226,15.1108627,13.683010299999999,15.387469299999999,25.175041199999999,28.0181167,16.985807600000001,14.5978891,32.835928000000003,16.195960100000001,16.868525900000002,42.768866899999999,16.839932699999999,16.9356446,20.275196399999999,13.6029941,17.827356099999999,14.7056662,15.5321976,11.367521399999999,13.049546400000001,18.3778784,14.0467657,20.6605223,14.3184422,13.7735504,18.723633400000001,15.1666829,36.643665300000002,15.025603500000001,18.369895499999998,14.758309300000001,16.413352799999998,14.352436300000001,27.593883399999999,17.640962200000001,24.889348500000001,19.343636499999999,37.834052900000003,16.899526699999999,14.538812800000001,18.476678,14.503143700000001,17.949222599999999,27.928023899999999,28.0541488,33.818550700000003,19.861855599999998,14.0083929,19.6994744,16.449385100000001,17.534883700000002,13.505452500000001,14.034565000000001,18.511502,16.474421100000001,19.920618600000001,11.723732,20.724422799999999,15.7185951,18.779374499999999,25.838414,13.562244099999999,22.011856999999999,12.174280899999999,14.2502659,14.3687708,16.521279400000001,12.741278899999999,21.507740200000001,21.300728899999999,21.184251,15.4883463,28.988154900000001,14.636542199999999,13.0760986,15.9511699,16.878980899999998,19.879575299999999,20.0448263,17.879589800000002,17.057172900000001,24.730046900000001,20.458265099999998,15.960024199999999,15.680702699999999,15.928739800000001,16.553049699999999,24.7568609,21.059561599999999,22.652363999999999,22.805217599999999],"type":"box","orientation":"h","name":"IL","marker":{"color":"rgba(102,194,165,1)","line":{"color":"rgba(102,194,165,1)"}},"line":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(252,141,98,0.5)","x":[16.115679700000001,27.359786199999999,22.846814500000001,13.4643978,12.981963500000001,27.830624100000001,19.8002103,15.4562536,13.214982300000001,16.8123574,14.1137248,16.045283000000001,8.5437509899999995,13.2391267,15.574275699999999,13.921367500000001,15.581854,21.197014500000002,17.167662799999999,18.372342499999998,11.4249881,20.549892799999999,11.145299100000001,12.993598799999999,13.929867,15.50432,15.538167100000001,14.9522958,42.131149899999997,20.489939400000001,13.1074407,24.220034500000001,13.257682300000001,20.229814399999999,16.973138599999999,13.1423129,14.8558462,12.771798,17.546090299999999,10.1458975,22.308069,19.975747800000001,19.262915100000001,11.1118012,17.668613799999999,17.1792531,13.1476522,16.401997999999999,26.7446886,17.777526300000002,13.5396226,14.4075703,37.742295400000003,16.925227700000001,14.679814199999999,12.1746236,12.6387629,10.7029216,9.7882708800000007,11.164917900000001,14.612900099999999,11.042294800000001,13.842852000000001,24.455887000000001,17.210682500000001,14.171055900000001,15.734664,12.6200972,13.5281456,12.8463697,24.611668999999999,10.589586499999999,14.7000195,14.133823599999999,10.014025200000001,18.608020400000001,15.4816696,9.4715852399999996,36.245444599999999,15.421938900000001,12.644985200000001,21.758517399999999,12.2726866,22.723011799999998,16.080516200000002,13.399963,23.815566799999999,10.8145974,15.5891252,18.565503799999998,16.583834700000001,15.809775999999999],"type":"box","orientation":"h","name":"IN","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"line":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(141,160,203,0.5)","x":[14.115092300000001,16.2755866,18.0660208,18.9337962,19.039802999999999,11.8278471,14.5760743,17.251975399999999,18.225824500000002,21.420856799999999,23.742011000000002,16.066701999999999,21.488519199999999,15.8443516,22.652725100000001,14.6477089,16.939765699999999,12.041948700000001,22.864736300000001,18.7787018,18.912403999999999,20.4206544,26.978781900000001,26.872568099999999,20.1454244,11.433138700000001,21.173081499999999,30.9753249,16.444129199999999,16.468469800000001,24.765087699999999,14.3082727,36.760061899999997,15.116835,16.234239899999999,15.4575777,27.2497358,21.205782599999999,34.557185699999998,11.4555097,28.6383762,14.4522145,11.3134379,16.154235499999999,32.596387200000002,18.7880617,27.586635900000001,14.4056678,15.2878703,20.686691100000001,16.252821699999998,26.763553999999999,18.540128599999999,25.0460405,15.084171,35.608836500000002,13.280021,17.429609599999999,14.160017,13.4575569,19.043321299999999,15.6946934,36.963511400000002,16.902409599999999,11.656838199999999,15.9567602,13.665839399999999,12.921038100000001,20.021130500000002,26.9656935,13.893376399999999,13.363353,19.708129400000001,17.641192,17.0117257,13.7970398,14.5667198,17.2912268,14.124310100000001,17.804744299999999,48.078510199999997,19.410403599999999,18.232210599999998],"type":"box","orientation":"h","name":"MI","marker":{"color":"rgba(141,160,203,1)","line":{"color":"rgba(141,160,203,1)"}},"line":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(231,138,195,0.5)","x":[8.74173036,17.366060399999999,17.266945499999999,13.243539500000001,29.1494085,16.176470599999998,14.1576729,11.4336901,24.2252343,11.323289000000001,13.912174800000001,17.784991999999999,19.689345400000001,15.763120799999999,13.0905778,11.6793426,14.258027,25.085388200000001,13.475094,18.188161900000001,31.594057299999999,18.7380268,21.077387399999999,11.8740898,32.204593000000003,16.4765579,14.9341366,31.627997700000002,31.956731999999999,13.5143719,29.788310899999999,24.4504965,16.0309861,10.5537945,15.258975100000001,12.311271100000001,12.85435,9.3307086600000009,13.4497842,10.984531799999999,13.8431503,16.771139000000002,23.682805500000001,12.208368399999999,18.179368499999999,13.3233757,18.8616572,23.550428499999999,13.3788082,18.175797299999999,15.0270375,23.702606500000002,11.677498,14.1000841,19.2777119,10.513927000000001,26.550480400000001,11.3808463,12.105140499999999,15.3234543,8.8458880400000002,19.338308999999999,11.4884393,10.1076709,13.0943276,12.444532799999999,21.881875099999998,11.233264,15.7080088,16.7975615,14.115657499999999,16.282409699999999,13.777260800000001,15.6221022,17.376210499999999,18.989604100000001,24.733139300000001,15.5998451,13.083417900000001,16.9825108,15.1100169,7.9132557800000001,24.419351800000001,19.009675600000001,18.445430900000002,14.498714700000001,29.095110200000001,13.710744399999999],"type":"box","orientation":"h","name":"OH","marker":{"color":"rgba(231,138,195,1)","line":{"color":"rgba(231,138,195,1)"}},"line":{"color":"rgba(231,138,195,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(166,216,84,0.5)","x":[12.427491699999999,18.320015600000001,19.425146999999999,25.822892299999999,26.2931785,17.9412424,13.6760641,19.780324700000001,18.153336299999999,13.846310000000001,20.852312999999999,16.599468999999999,43.626450900000002,15.925463799999999,22.488341299999998,20.994087199999999,26.2870159,29.8544673,15.603532899999999,20.8318653,13.5699001,21.680384100000001,19.875177600000001,17.305067099999999,20.483250999999999,18.731729300000001,15.324074100000001,22.165632299999999,14.3912738,20.328242199999998,14.390958599999999,30.4885126,16.4620371,13.631794599999999,17.441794300000002,19.071148099999998,21.877375000000001,15.4275441,14.0016473,7.3361082199999998,25.355833700000002,17.372421299999999,13.4311741,21.9338239,24.857825099999999,37.419779800000001,15.749235499999999,24.464372000000001,18.5920497,24.634327500000001,15.527175,22.906513100000002,17.499336799999998,19.906440199999999,16.7559769,28.588086700000002,19.833921,17.9479167,14.8077953,20.837192600000002,15.0650908,17.551657899999999,18.942131100000001,19.2118611,23.1569039,19.016887199999999,23.3909001,35.396784099999998,16.549868799999999,15.064584,24.995503599999999,21.666381699999999],"type":"box","orientation":"h","name":"WI","marker":{"color":"rgba(166,216,84,1)","line":{"color":"rgba(166,216,84,1)"}},"line":{"color":"rgba(166,216,84,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="cr-bar" class="sticky">
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-c44a6ed1f2a7d2eed14a" style="width:100%;height:338px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c44a6ed1f2a7d2eed14a">{"x":{"visdat":{"581d487aa3e7":["function () ","plotlyVisDat"]},"cur_data":"581d487aa3e7","attrs":{"581d487aa3e7":{"x":["giraffes","orangutans","monkeys"],"y":[20,14,23],"marker":{"color":["#2196F3","#4CAF50","#FF9800"]},"name":"SF Zoo","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"height":350,"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":[],"type":"category","categoryorder":"array","categoryarray":["giraffes","monkeys","orangutans"]},"yaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["giraffes","orangutans","monkeys"],"y":[20,14,23],"marker":{"color":["#2196F3","#4CAF50","#FF9800"],"line":{"color":"rgba(31,119,180,1)"}},"name":"SF Zoo","type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="cr-scatter" class="sticky">
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-431f7162c5b09c5cb95d" style="width:100%;height:386px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-431f7162c5b09c5cb95d">{"x":{"visdat":{"581d56f91ef2":["function () ","plotlyVisDat"]},"cur_data":"581d56f91ef2","attrs":{"581d56f91ef2":{"x":{},"y":{},"mode":"markers","marker":{"size":8,"opacity":0.69999999999999996},"color":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"height":400,"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Sepal.Length"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Petal.Length"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[5.0999999999999996,4.9000000000000004,4.7000000000000002,4.5999999999999996,5,5.4000000000000004,4.5999999999999996,5,4.4000000000000004,4.9000000000000004,5.4000000000000004,4.7999999999999998,4.7999999999999998,4.2999999999999998,5.7999999999999998,5.7000000000000002,5.4000000000000004,5.0999999999999996,5.7000000000000002,5.0999999999999996,5.4000000000000004,5.0999999999999996,4.5999999999999996,5.0999999999999996,4.7999999999999998,5,5,5.2000000000000002,5.2000000000000002,4.7000000000000002,4.7999999999999998,5.4000000000000004,5.2000000000000002,5.5,4.9000000000000004,5,5.5,4.9000000000000004,4.4000000000000004,5.0999999999999996,5,4.5,4.4000000000000004,5,5.0999999999999996,4.7999999999999998,5.0999999999999996,4.5999999999999996,5.2999999999999998,5],"y":[1.3999999999999999,1.3999999999999999,1.3,1.5,1.3999999999999999,1.7,1.3999999999999999,1.5,1.3999999999999999,1.5,1.5,1.6000000000000001,1.3999999999999999,1.1000000000000001,1.2,1.5,1.3,1.3999999999999999,1.7,1.5,1.7,1.5,1,1.7,1.8999999999999999,1.6000000000000001,1.6000000000000001,1.5,1.3999999999999999,1.6000000000000001,1.6000000000000001,1.5,1.5,1.3999999999999999,1.5,1.2,1.3,1.3999999999999999,1.3,1.5,1.3,1.3,1.3,1.6000000000000001,1.8999999999999999,1.3999999999999999,1.6000000000000001,1.3999999999999999,1.5,1.3999999999999999],"mode":"markers","marker":{"color":"rgba(102,194,165,1)","size":8,"opacity":0.69999999999999996,"line":{"color":"rgba(102,194,165,1)"}},"type":"scatter","name":"setosa","textfont":{"color":"rgba(102,194,165,1)"},"error_y":{"color":"rgba(102,194,165,1)"},"error_x":{"color":"rgba(102,194,165,1)"},"line":{"color":"rgba(102,194,165,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[7,6.4000000000000004,6.9000000000000004,5.5,6.5,5.7000000000000002,6.2999999999999998,4.9000000000000004,6.5999999999999996,5.2000000000000002,5,5.9000000000000004,6,6.0999999999999996,5.5999999999999996,6.7000000000000002,5.5999999999999996,5.7999999999999998,6.2000000000000002,5.5999999999999996,5.9000000000000004,6.0999999999999996,6.2999999999999998,6.0999999999999996,6.4000000000000004,6.5999999999999996,6.7999999999999998,6.7000000000000002,6,5.7000000000000002,5.5,5.5,5.7999999999999998,6,5.4000000000000004,6,6.7000000000000002,6.2999999999999998,5.5999999999999996,5.5,5.5,6.0999999999999996,5.7999999999999998,5,5.5999999999999996,5.7000000000000002,5.7000000000000002,6.2000000000000002,5.0999999999999996,5.7000000000000002],"y":[4.7000000000000002,4.5,4.9000000000000004,4,4.5999999999999996,4.5,4.7000000000000002,3.2999999999999998,4.5999999999999996,3.8999999999999999,3.5,4.2000000000000002,4,4.7000000000000002,3.6000000000000001,4.4000000000000004,4.5,4.0999999999999996,4.5,3.8999999999999999,4.7999999999999998,4,4.9000000000000004,4.7000000000000002,4.2999999999999998,4.4000000000000004,4.7999999999999998,5,4.5,3.5,3.7999999999999998,3.7000000000000002,3.8999999999999999,5.0999999999999996,4.5,4.5,4.7000000000000002,4.4000000000000004,4.0999999999999996,4,4.4000000000000004,4.5999999999999996,4,3.2999999999999998,4.2000000000000002,4.2000000000000002,4.2000000000000002,4.2999999999999998,3,4.0999999999999996],"mode":"markers","marker":{"color":"rgba(252,141,98,1)","size":8,"opacity":0.69999999999999996,"line":{"color":"rgba(252,141,98,1)"}},"type":"scatter","name":"versicolor","textfont":{"color":"rgba(252,141,98,1)"},"error_y":{"color":"rgba(252,141,98,1)"},"error_x":{"color":"rgba(252,141,98,1)"},"line":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[6.2999999999999998,5.7999999999999998,7.0999999999999996,6.2999999999999998,6.5,7.5999999999999996,4.9000000000000004,7.2999999999999998,6.7000000000000002,7.2000000000000002,6.5,6.4000000000000004,6.7999999999999998,5.7000000000000002,5.7999999999999998,6.4000000000000004,6.5,7.7000000000000002,7.7000000000000002,6,6.9000000000000004,5.5999999999999996,7.7000000000000002,6.2999999999999998,6.7000000000000002,7.2000000000000002,6.2000000000000002,6.0999999999999996,6.4000000000000004,7.2000000000000002,7.4000000000000004,7.9000000000000004,6.4000000000000004,6.2999999999999998,6.0999999999999996,7.7000000000000002,6.2999999999999998,6.4000000000000004,6,6.9000000000000004,6.7000000000000002,6.9000000000000004,5.7999999999999998,6.7999999999999998,6.7000000000000002,6.7000000000000002,6.2999999999999998,6.5,6.2000000000000002,5.9000000000000004],"y":[6,5.0999999999999996,5.9000000000000004,5.5999999999999996,5.7999999999999998,6.5999999999999996,4.5,6.2999999999999998,5.7999999999999998,6.0999999999999996,5.0999999999999996,5.2999999999999998,5.5,5,5.0999999999999996,5.2999999999999998,5.5,6.7000000000000002,6.9000000000000004,5,5.7000000000000002,4.9000000000000004,6.7000000000000002,4.9000000000000004,5.7000000000000002,6,4.7999999999999998,4.9000000000000004,5.5999999999999996,5.7999999999999998,6.0999999999999996,6.4000000000000004,5.5999999999999996,5.0999999999999996,5.5999999999999996,6.0999999999999996,5.5999999999999996,5.5,4.7999999999999998,5.4000000000000004,5.5999999999999996,5.0999999999999996,5.0999999999999996,5.9000000000000004,5.7000000000000002,5.2000000000000002,5,5.2000000000000002,5.4000000000000004,5.0999999999999996],"mode":"markers","marker":{"color":"rgba(141,160,203,1)","size":8,"opacity":0.69999999999999996,"line":{"color":"rgba(141,160,203,1)"}},"type":"scatter","name":"virginica","textfont":{"color":"rgba(141,160,203,1)"},"error_y":{"color":"rgba(141,160,203,1)"},"error_x":{"color":"rgba(141,160,203,1)"},"line":{"color":"rgba(141,160,203,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<section id="converting-ggplot2-plotly" class="level2 unnumbered sticky">
+<h2 class="unnumbered sticky anchored" data-anchor-id="converting-ggplot2-plotly">Converting ggplot2 → Plotly</h2>
+<div id="cr-ggplotly" class="sticky">
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-cd149d73c592810fe801" style="width:100%;height:338px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cd149d73c592810fe801">{"x":{"data":[{"x":[21.25,21.25,22.800000000000001,22.800000000000001,24.399999999999999,26,27.300000000000001,30.399999999999999,30.399999999999999,32.399999999999999,33.899999999999999],"y":[0.11131725417439703,0.33395176252319109,0.11131725417439703,0.33395176252319109,0.11131725417439703,0.11131725417439703,0.11131725417439703,0.11131725417439703,0.33395176252319109,0.11131725417439703,0.11131725417439703],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(102,194,165,1)","opacity":1,"size":12.46753246753247,"symbol":"circle","line":{"width":3.7795275590551185,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"4","legendgroup":"4","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17.700000000000003,17.700000000000003,18.949999999999999,19.699999999999999,21.25,21.25,21.25],"y":[0.11131725417439703,0.33395176252319109,0.11131725417439703,0.11131725417439703,0.55658627087198509,0.77922077922077926,1.0018552875695732],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(252,141,98,1)","opacity":1,"size":12.46753246753247,"symbol":"circle","line":{"width":3.7795275590551185,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"6","legendgroup":"6","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10.4,10.4,13.300000000000001,14.75,14.75,14.75,14.75,14.75,15.949999999999999,15.949999999999999,15.949999999999999,17.700000000000003,18.949999999999999,18.949999999999999],"y":[0.11131725417439703,0.33395176252319109,0.11131725417439703,0.11131725417439703,0.33395176252319109,0.55658627087198509,0.77922077922077926,1.0018552875695732,0.11131725417439703,0.33395176252319109,0.55658627087198509,0.55658627087198509,0.33395176252319109,0.55658627087198509],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(141,160,203,1)","opacity":1,"size":12.46753246753247,"symbol":"circle","line":{"width":3.7795275590551185,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"8","legendgroup":"8","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":40.840182648401829,"r":7.3059360730593621,"b":37.260273972602747,"l":48.949771689497723},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"MPG Distribution by Cylinder Count","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[8.6750000000000007,35.625],"tickmode":"array","ticktext":["10","15","20","25","30","35"],"tickvals":[10,15,20,25,30,35],"categoryorder":"array","categoryarray":["10","15","20","25","30","35"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Miles per Gallon","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.050000000000000003,1.05],"tickmode":"array","ticktext":["0.00","0.25","0.50","0.75","1.00"],"tickvals":[0,0.25,0.5,0.75,1],"categoryorder":"array","categoryarray":["0.00","0.25","0.50","0.75","1.00"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"count","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Cylinders","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","height":350,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"581d2248d563":{"x":{},"fill":{},"type":"scatter"}},"cur_data":"581d2248d563","visdat":{"581d2248d563":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+<div id="cr-dumbbell" class="sticky">
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-e71b9a3a38edc58a788e" style="width:100%;height:483px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e71b9a3a38edc58a788e">{"x":{"data":[{"x":[28.800999999999998,43.828000000000003,null,50.939,75.635000000000005,null,37.484000000000002,64.061999999999998,null,39.417000000000002,59.722999999999999,null,44,72.960999999999999,null,60.960000000000001,82.207999999999998,null,37.372999999999998,64.697999999999993,null,37.468000000000004,70.650000000000006,null,44.869,70.963999999999999,null,45.32,59.545000000000002,null,65.390000000000001,80.745000000000005,null,63.030000000000001,82.602999999999994,null,43.158000000000001,72.534999999999997,null,50.055999999999997,67.296999999999997,null,47.453000000000003,78.623000000000005,null,55.564999999999998,77.587999999999994,null,55.927999999999997,71.992999999999995,null,48.463000000000001,74.241,null,42.244,66.802999999999997,null,36.319000000000003,62.069000000000003,null,36.156999999999996,63.784999999999997,null,37.578000000000003,75.640000000000001,null,43.436,65.483000000000004,null,47.752000000000002,71.688000000000002,null,39.875,72.777000000000001,null,60.396000000000001,79.971999999999994,null,57.593000000000004,72.396000000000001,null,45.883000000000003,74.143000000000001,null,58.5,78.400000000000006,null,50.847999999999999,70.616,null,40.411999999999999,74.248999999999995,null,43.159999999999997,73.421999999999997,null,32.548000000000002,62.698],"y":[1,1,null,25,25,null,6,6,null,4,4,null,18,18,null,31,31,null,7,7,null,9,9,null,16,16,null,8,8,null,33,33,null,32,32,null,15,15,null,19,19,null,24,24,null,28,28,null,26,26,null,23,23,null,11,11,null,3,3,null,5,5,null,13,13,null,10,10,null,20,20,null,12,12,null,30,30,null,27,27,null,21,21,null,29,29,null,22,22,null,14,14,null,17,17,null,2,2],"text":["lifeExp: 28.801<br />reorder(country, lifeExp): Afghanistan<br />paired: 1","lifeExp: 43.828<br />reorder(country, lifeExp): Afghanistan<br />paired: 1",null,"lifeExp: 50.939<br />reorder(country, lifeExp): Bahrain<br />paired: 2","lifeExp: 75.635<br />reorder(country, lifeExp): Bahrain<br />paired: 2",null,"lifeExp: 37.484<br />reorder(country, lifeExp): Bangladesh<br />paired: 3","lifeExp: 64.062<br />reorder(country, lifeExp): Bangladesh<br />paired: 3",null,"lifeExp: 39.417<br />reorder(country, lifeExp): Cambodia<br />paired: 4","lifeExp: 59.723<br />reorder(country, lifeExp): Cambodia<br />paired: 4",null,"lifeExp: 44.000<br />reorder(country, lifeExp): China<br />paired: 5","lifeExp: 72.961<br />reorder(country, lifeExp): China<br />paired: 5",null,"lifeExp: 60.960<br />reorder(country, lifeExp): Hong Kong China<br />paired: 6","lifeExp: 82.208<br />reorder(country, lifeExp): Hong Kong China<br />paired: 6",null,"lifeExp: 37.373<br />reorder(country, lifeExp): India<br />paired: 7","lifeExp: 64.698<br />reorder(country, lifeExp): India<br />paired: 7",null,"lifeExp: 37.468<br />reorder(country, lifeExp): Indonesia<br />paired: 8","lifeExp: 70.650<br />reorder(country, lifeExp): Indonesia<br />paired: 8",null,"lifeExp: 44.869<br />reorder(country, lifeExp): Iran<br />paired: 9","lifeExp: 70.964<br />reorder(country, lifeExp): Iran<br />paired: 9",null,"lifeExp: 45.320<br />reorder(country, lifeExp): Iraq<br />paired: 10","lifeExp: 59.545<br />reorder(country, lifeExp): Iraq<br />paired: 10",null,"lifeExp: 65.390<br />reorder(country, lifeExp): Israel<br />paired: 11","lifeExp: 80.745<br />reorder(country, lifeExp): Israel<br />paired: 11",null,"lifeExp: 63.030<br />reorder(country, lifeExp): Japan<br />paired: 12","lifeExp: 82.603<br />reorder(country, lifeExp): Japan<br />paired: 12",null,"lifeExp: 43.158<br />reorder(country, lifeExp): Jordan<br />paired: 13","lifeExp: 72.535<br />reorder(country, lifeExp): Jordan<br />paired: 13",null,"lifeExp: 50.056<br />reorder(country, lifeExp): Korea Dem. Rep.<br />paired: 14","lifeExp: 67.297<br />reorder(country, lifeExp): Korea Dem. Rep.<br />paired: 14",null,"lifeExp: 47.453<br />reorder(country, lifeExp): Korea Rep.<br />paired: 15","lifeExp: 78.623<br />reorder(country, lifeExp): Korea Rep.<br />paired: 15",null,"lifeExp: 55.565<br />reorder(country, lifeExp): Kuwait<br />paired: 16","lifeExp: 77.588<br />reorder(country, lifeExp): Kuwait<br />paired: 16",null,"lifeExp: 55.928<br />reorder(country, lifeExp): Lebanon<br />paired: 17","lifeExp: 71.993<br />reorder(country, lifeExp): Lebanon<br />paired: 17",null,"lifeExp: 48.463<br />reorder(country, lifeExp): Malaysia<br />paired: 18","lifeExp: 74.241<br />reorder(country, lifeExp): Malaysia<br />paired: 18",null,"lifeExp: 42.244<br />reorder(country, lifeExp): Mongolia<br />paired: 19","lifeExp: 66.803<br />reorder(country, lifeExp): Mongolia<br />paired: 19",null,"lifeExp: 36.319<br />reorder(country, lifeExp): Myanmar<br />paired: 20","lifeExp: 62.069<br />reorder(country, lifeExp): Myanmar<br />paired: 20",null,"lifeExp: 36.157<br />reorder(country, lifeExp): Nepal<br />paired: 21","lifeExp: 63.785<br />reorder(country, lifeExp): Nepal<br />paired: 21",null,"lifeExp: 37.578<br />reorder(country, lifeExp): Oman<br />paired: 22","lifeExp: 75.640<br />reorder(country, lifeExp): Oman<br />paired: 22",null,"lifeExp: 43.436<br />reorder(country, lifeExp): Pakistan<br />paired: 23","lifeExp: 65.483<br />reorder(country, lifeExp): Pakistan<br />paired: 23",null,"lifeExp: 47.752<br />reorder(country, lifeExp): Philippines<br />paired: 24","lifeExp: 71.688<br />reorder(country, lifeExp): Philippines<br />paired: 24",null,"lifeExp: 39.875<br />reorder(country, lifeExp): Saudi Arabia<br />paired: 25","lifeExp: 72.777<br />reorder(country, lifeExp): Saudi Arabia<br />paired: 25",null,"lifeExp: 60.396<br />reorder(country, lifeExp): Singapore<br />paired: 26","lifeExp: 79.972<br />reorder(country, lifeExp): Singapore<br />paired: 26",null,"lifeExp: 57.593<br />reorder(country, lifeExp): Sri Lanka<br />paired: 27","lifeExp: 72.396<br />reorder(country, lifeExp): Sri Lanka<br />paired: 27",null,"lifeExp: 45.883<br />reorder(country, lifeExp): Syria<br />paired: 28","lifeExp: 74.143<br />reorder(country, lifeExp): Syria<br />paired: 28",null,"lifeExp: 58.500<br />reorder(country, lifeExp): Taiwan<br />paired: 29","lifeExp: 78.400<br />reorder(country, lifeExp): Taiwan<br />paired: 29",null,"lifeExp: 50.848<br />reorder(country, lifeExp): Thailand<br />paired: 30","lifeExp: 70.616<br />reorder(country, lifeExp): Thailand<br />paired: 30",null,"lifeExp: 40.412<br />reorder(country, lifeExp): Vietnam<br />paired: 31","lifeExp: 74.249<br />reorder(country, lifeExp): Vietnam<br />paired: 31",null,"lifeExp: 43.160<br />reorder(country, lifeExp): West Bank and Gaza<br />paired: 32","lifeExp: 73.422<br />reorder(country, lifeExp): West Bank and Gaza<br />paired: 32",null,"lifeExp: 32.548<br />reorder(country, lifeExp): Yemen Rep.<br />paired: 33","lifeExp: 62.698<br />reorder(country, lifeExp): Yemen Rep.<br />paired: 33"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(179,179,179,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[28.800999999999998,50.939,37.484000000000002,39.417000000000002,44,60.960000000000001,37.372999999999998,37.468000000000004,44.869,45.32,65.390000000000001,63.030000000000001,43.158000000000001,50.055999999999997,47.453000000000003,55.564999999999998,55.927999999999997,48.463000000000001,42.244,36.319000000000003,36.156999999999996,37.578000000000003,43.436,47.752000000000002,39.875,60.396000000000001,57.593000000000004,45.883000000000003,58.5,50.847999999999999,40.411999999999999,43.159999999999997,32.548000000000002],"y":[1,25,6,4,18,31,7,9,16,8,33,32,15,19,24,28,26,23,11,3,5,13,10,20,12,30,27,21,29,22,14,17,2],"text":["lifeExp: 28.801<br />reorder(country, lifeExp): Afghanistan<br />year: 1952","lifeExp: 50.939<br />reorder(country, lifeExp): Bahrain<br />year: 1952","lifeExp: 37.484<br />reorder(country, lifeExp): Bangladesh<br />year: 1952","lifeExp: 39.417<br />reorder(country, lifeExp): Cambodia<br />year: 1952","lifeExp: 44.000<br />reorder(country, lifeExp): China<br />year: 1952","lifeExp: 60.960<br />reorder(country, lifeExp): Hong Kong China<br />year: 1952","lifeExp: 37.373<br />reorder(country, lifeExp): India<br />year: 1952","lifeExp: 37.468<br />reorder(country, lifeExp): Indonesia<br />year: 1952","lifeExp: 44.869<br />reorder(country, lifeExp): Iran<br />year: 1952","lifeExp: 45.320<br />reorder(country, lifeExp): Iraq<br />year: 1952","lifeExp: 65.390<br />reorder(country, lifeExp): Israel<br />year: 1952","lifeExp: 63.030<br />reorder(country, lifeExp): Japan<br />year: 1952","lifeExp: 43.158<br />reorder(country, lifeExp): Jordan<br />year: 1952","lifeExp: 50.056<br />reorder(country, lifeExp): Korea Dem. Rep.<br />year: 1952","lifeExp: 47.453<br />reorder(country, lifeExp): Korea Rep.<br />year: 1952","lifeExp: 55.565<br />reorder(country, lifeExp): Kuwait<br />year: 1952","lifeExp: 55.928<br />reorder(country, lifeExp): Lebanon<br />year: 1952","lifeExp: 48.463<br />reorder(country, lifeExp): Malaysia<br />year: 1952","lifeExp: 42.244<br />reorder(country, lifeExp): Mongolia<br />year: 1952","lifeExp: 36.319<br />reorder(country, lifeExp): Myanmar<br />year: 1952","lifeExp: 36.157<br />reorder(country, lifeExp): Nepal<br />year: 1952","lifeExp: 37.578<br />reorder(country, lifeExp): Oman<br />year: 1952","lifeExp: 43.436<br />reorder(country, lifeExp): Pakistan<br />year: 1952","lifeExp: 47.752<br />reorder(country, lifeExp): Philippines<br />year: 1952","lifeExp: 39.875<br />reorder(country, lifeExp): Saudi Arabia<br />year: 1952","lifeExp: 60.396<br />reorder(country, lifeExp): Singapore<br />year: 1952","lifeExp: 57.593<br />reorder(country, lifeExp): Sri Lanka<br />year: 1952","lifeExp: 45.883<br />reorder(country, lifeExp): Syria<br />year: 1952","lifeExp: 58.500<br />reorder(country, lifeExp): Taiwan<br />year: 1952","lifeExp: 50.848<br />reorder(country, lifeExp): Thailand<br />year: 1952","lifeExp: 40.412<br />reorder(country, lifeExp): Vietnam<br />year: 1952","lifeExp: 43.160<br />reorder(country, lifeExp): West Bank and Gaza<br />year: 1952","lifeExp: 32.548<br />reorder(country, lifeExp): Yemen Rep.<br />year: 1952"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(48,18,59,1)","opacity":1,"size":9.4488188976377963,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(48,18,59,1)"}},"hoveron":"points","name":"1952","legendgroup":"1952","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[43.828000000000003,75.635000000000005,64.061999999999998,59.722999999999999,72.960999999999999,82.207999999999998,64.697999999999993,70.650000000000006,70.963999999999999,59.545000000000002,80.745000000000005,82.602999999999994,72.534999999999997,67.296999999999997,78.623000000000005,77.587999999999994,71.992999999999995,74.241,66.802999999999997,62.069000000000003,63.784999999999997,75.640000000000001,65.483000000000004,71.688000000000002,72.777000000000001,79.971999999999994,72.396000000000001,74.143000000000001,78.400000000000006,70.616,74.248999999999995,73.421999999999997,62.698],"y":[1,25,6,4,18,31,7,9,16,8,33,32,15,19,24,28,26,23,11,3,5,13,10,20,12,30,27,21,29,22,14,17,2],"text":["lifeExp: 43.828<br />reorder(country, lifeExp): Afghanistan<br />year: 2007","lifeExp: 75.635<br />reorder(country, lifeExp): Bahrain<br />year: 2007","lifeExp: 64.062<br />reorder(country, lifeExp): Bangladesh<br />year: 2007","lifeExp: 59.723<br />reorder(country, lifeExp): Cambodia<br />year: 2007","lifeExp: 72.961<br />reorder(country, lifeExp): China<br />year: 2007","lifeExp: 82.208<br />reorder(country, lifeExp): Hong Kong China<br />year: 2007","lifeExp: 64.698<br />reorder(country, lifeExp): India<br />year: 2007","lifeExp: 70.650<br />reorder(country, lifeExp): Indonesia<br />year: 2007","lifeExp: 70.964<br />reorder(country, lifeExp): Iran<br />year: 2007","lifeExp: 59.545<br />reorder(country, lifeExp): Iraq<br />year: 2007","lifeExp: 80.745<br />reorder(country, lifeExp): Israel<br />year: 2007","lifeExp: 82.603<br />reorder(country, lifeExp): Japan<br />year: 2007","lifeExp: 72.535<br />reorder(country, lifeExp): Jordan<br />year: 2007","lifeExp: 67.297<br />reorder(country, lifeExp): Korea Dem. Rep.<br />year: 2007","lifeExp: 78.623<br />reorder(country, lifeExp): Korea Rep.<br />year: 2007","lifeExp: 77.588<br />reorder(country, lifeExp): Kuwait<br />year: 2007","lifeExp: 71.993<br />reorder(country, lifeExp): Lebanon<br />year: 2007","lifeExp: 74.241<br />reorder(country, lifeExp): Malaysia<br />year: 2007","lifeExp: 66.803<br />reorder(country, lifeExp): Mongolia<br />year: 2007","lifeExp: 62.069<br />reorder(country, lifeExp): Myanmar<br />year: 2007","lifeExp: 63.785<br />reorder(country, lifeExp): Nepal<br />year: 2007","lifeExp: 75.640<br />reorder(country, lifeExp): Oman<br />year: 2007","lifeExp: 65.483<br />reorder(country, lifeExp): Pakistan<br />year: 2007","lifeExp: 71.688<br />reorder(country, lifeExp): Philippines<br />year: 2007","lifeExp: 72.777<br />reorder(country, lifeExp): Saudi Arabia<br />year: 2007","lifeExp: 79.972<br />reorder(country, lifeExp): Singapore<br />year: 2007","lifeExp: 72.396<br />reorder(country, lifeExp): Sri Lanka<br />year: 2007","lifeExp: 74.143<br />reorder(country, lifeExp): Syria<br />year: 2007","lifeExp: 78.400<br />reorder(country, lifeExp): Taiwan<br />year: 2007","lifeExp: 70.616<br />reorder(country, lifeExp): Thailand<br />year: 2007","lifeExp: 74.249<br />reorder(country, lifeExp): Vietnam<br />year: 2007","lifeExp: 73.422<br />reorder(country, lifeExp): West Bank and Gaza<br />year: 2007","lifeExp: 62.698<br />reorder(country, lifeExp): Yemen Rep.<br />year: 2007"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(122,4,3,1)","opacity":1,"size":9.4488188976377963,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(122,4,3,1)"}},"hoveron":"points","name":"2007","legendgroup":"2007","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":38.581984225819845,"r":6.6417600664176026,"b":33.872976338729771,"l":105.60398505603985},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205},"title":{"text":"Life Expectancy in Asia: 1952 vs 2007","font":{"color":"rgba(0,0,0,1)","family":"","size":15.940224159402243},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[26.110899999999997,85.293099999999995],"tickmode":"array","ticktext":["30","40","50","60","70","80"],"tickvals":[30,40,50,60,70,80],"categoryorder":"array","categoryarray":["30","40","50","60","70","80"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.3208800332088013,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.62681610626816},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Life Expectancy","font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,33.600000000000001],"tickmode":"array","ticktext":["Afghanistan","Yemen Rep.","Myanmar","Cambodia","Nepal","Bangladesh","India","Iraq","Indonesia","Pakistan","Mongolia","Saudi Arabia","Oman","Vietnam","Jordan","Iran","West Bank and Gaza","China","Korea Dem. Rep.","Philippines","Syria","Thailand","Malaysia","Korea Rep.","Bahrain","Lebanon","Sri Lanka","Kuwait","Taiwan","Singapore","Hong Kong China","Japan","Israel"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33],"categoryorder":"array","categoryarray":["Afghanistan","Yemen Rep.","Myanmar","Cambodia","Nepal","Bangladesh","India","Iraq","Indonesia","Pakistan","Mongolia","Saudi Arabia","Oman","Vietnam","Jordan","Iran","West Bank and Gaza","China","Korea Dem. Rep.","Philippines","Syria","Thailand","Malaysia","Korea Rep.","Bahrain","Lebanon","Sri Lanka","Kuwait","Taiwan","Singapore","Hong Kong China","Japan","Israel"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.3208800332088013,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":10.62681610626816},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":10.62681610626816},"title":{"text":"Year","font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205}}},"hovermode":"closest","height":500,"barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"581d525cdca3":{"x":{},"y":{},"type":"scatter"},"581d4e997b93":{"x":{},"y":{},"colour":{}}},"cur_data":"581d525cdca3","visdat":{"581d525cdca3":["function (y) ","x"],"581d4e997b93":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
